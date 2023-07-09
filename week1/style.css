@@ -28,6 +28,42 @@ body{
     height: 30px;
 }
 
+.ham-menu-container{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 200px;
+    z-index: 1;
+}
+
+.close-botton{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+}
+
+.close-botton img{
+    height: 30px;
+}
+
+.ham-menu{
+    padding-top: 40px;
+    width: 100%;
+    height: 100vh;
+    background-color:rgb(187, 169, 148);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.ham-menu-text{
+    color:#fff;
+    font-size: 17px;
+    margin: 5px;
+}
+
 /* welcome bar */ 
 .welcome{
     display: flex;
@@ -106,7 +142,6 @@ body{
     position: absolute;
     right: 5px;
     top: 5px;
-
 }
 
 /* RWD */
