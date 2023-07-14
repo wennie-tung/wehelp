@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3 by JavaScript</title>
+</head>
+
+<body>
+    <h3>Task 3 by JavaScript</h3>
+    <p>Find out whose middle name is unique among all the names, and print it.</p>
+    <p>You can assume every input is a Chinese name with 2 ~ 3 words.</p>
+    <p>If there are only 2 words in a name, the middle name is defined as the second word.</p>
+    <p>Note : never change existing code.</p>
+
+    <script>
+        function func(...data) {
+            // 找出每一組的第二個字，放進陣列
+            // 利用 obj. 的特性 : 可以一直加屬性
+            const middleNames = getMiddleNames(data);
+
+            var result = {};
+            middleNames.forEach(function (middleName) {
+                if (result[middleName]) {
+                    result[middleName] = result[middleName] + 1;
+                } else {
+                    result[middleName] = 1;
+                }
+            });
+
+            // flag
+            let notUniqeName = true;
+            Object.entries(result) //
+                .forEach(function ([key, value]) {
+                    if (value == 1) {
+                        console.log(data[middleNames.indexOf(key)]);
+                        // 當有唯一一個中間名出現時 , 把 notUniqeName 設為 false
+                        notUniqeName = false;
+                    }
+                });
+
+            if (notUniqeName) {
+                console.log("沒有");
+            }
+
+
+            // 利用函式找出每個姓名的第二個字，並放入 middleNames[]
+            // 得到 middleNames['大', '明', '明']['靜', '立', '靜', '立', '花']['宣', '靜', '宣', '靜']
+            function getMiddleNames(names) {
+                const middleNames = [];
+                names.forEach(name => {
+                    middleNames.push(name.substring(1, 2)); // substring(1,2) 代表取前面兩個但不要第一個的資料
+                });
+                return middleNames;
+            }
+        }
+        func("彭大牆", "王明雅", "吳明"); // print 彭大牆
+        func("郭靜雅", "王立強", "林靜宜", "郭立恆", "林花花"); // print 林花花
+        func("郭宣雅", "林靜宜", "郭宣恆", "林靜花"); // print 沒有
+    </script>
+</body>
+
+</html>

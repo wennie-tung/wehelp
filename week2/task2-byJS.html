@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2 by JavaScript</title>
+</head>
+
+<body>
+    <h3>Task 2 by JavaScript</h3>
+    <p>Using a loop to complete functions below to calculate the sum of bonus of all employees in TWD and print it.</p>
+    <ol>
+        <li>Bonus should depend on salary, performance and role fields. Define your own rules and calculate a bonus for
+            each employee based on it.</li>
+        <li>The sum of bonus of all employees cannot exceed 10000 TWD based on your rules and example data.</li>
+        <li>You can assume the USD to TWD Exchange Rate is 30.</li>
+        <li>Salary is default to TWD if there is no specific mark.</li>
+    </ol>
+    <p>Note: never change existing code.</p>
+
+    <script>
+        function calculateSumOfBonus(data) {
+            // write down your bonus rule in comments
+            // Bonus Rule : 以 performance 為基準來計算獎金 % 數， above average = 10%，average = 5%， below average ＝ 3%
+            // 每一位可以得到的獎金為自身的 salary * 獎金 % 數
+
+            // foreach 拿到每個人的資料，薪水要處理成 int，按照 performance 算出該員的獎金 
+            let sumBonus = 0;
+            data.employees.forEach(employee => {
+                // console.log(employee);
+                sumBonus += salaryConvertToInt(employee.salary) * getBonusPercent(employee.performance);
+            });
+
+            console.log(sumBonus)
+
+            function salaryConvertToInt(salary) {
+                let exchangeRate = 30;
+                if (typeof (salary) !== "number") {
+                    var replaceStr = salary.replace(",", "");
+                    result = parseInt(replaceStr, 10);
+                    if (salary.includes("USD")) {
+                        result = result * exchangeRate;
+                        // console.log(result)
+                    }
+                    return result
+                } else {
+                    return salary;
+                }
+            }
+
+            function getBonusPercent(performance) {
+                switch (performance) {
+                    case "above average":
+                        return 0.1
+                        break;
+                    case "average":
+                        return 0.05
+                        break;
+                    case "below average":
+                        return 0.03
+                        break;
+                    default:
+                        return 1
+                        break;
+                }
+            }
+        }
+
+
+        calculateSumOfBonus({
+            "employees": [
+                {
+                    "name": "John",
+                    "salary": "1000USD",
+                    "performance": "above average",
+                    "role": "Engineer"
+                },
+                {
+                    "name": "Bob",
+                    "salary": 60000,
+                    "performance": "average",
+                    "role": "CEO"
+                },
+                {
+                    "name": "Jenny",
+                    "salary": "50,000",
+                    "performance": "below average",
+                    "role": "Sales"
+                }]
+        })
+
+    </script>
+</body>
+
+</html>

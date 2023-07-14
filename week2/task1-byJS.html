@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1 by JavaScript</title>
+</head>
+
+<body>
+    <h3>Task 1 by JavaScript</h3>
+    <p>We have example messages from 6 persons in JSON format.</p>
+    <p>There are at least 3 persons who are older than 17.</p>
+    <p>Using a loop to find out those who are most probably older than 17 years old based on example messages.</p>
+    <p>Print their names in the console.</p>
+    <p>Note: never change existing code.</p>
+
+    <script>
+        function findAndPrint(messages) {
+            const keyWords = ['18 years old', 'college student', 'legal age', 'vote'];
+
+            for (let key in messages) {
+                const containsKeyWords = keyWords.some(keyWord => messages[key].includes(keyWord));
+                if (containsKeyWords) {
+                    console.log(key);
+                }
+            }
+        }
+
+        findAndPrint({
+            "Bob": "My name is Bob. I'm 18 years old.", "Mary": "Hello, glad to meet you.",
+            "Copper": "I'm a college student. Nice to meet you.", "Leslie": "I am of legal age in Taiwan.",
+            "Vivian": "I will vote for Donald Trump next week",
+            "Jenny": "Good morning."
+        });
+    </script>
+</body>
+
+</html>

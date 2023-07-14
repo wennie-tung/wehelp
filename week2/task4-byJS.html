@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 4 by JavaScript</title>
+</head>
+
+<body>
+    <h3>Task 4 by JavaScript</h3>
+    <p>There is a number sequence: 0, 4, 3, 7, 6, 10, 9, 13, 12, 16, 15, ...</p>
+    <p>Find out the nth term in this sequence.</p>
+    <p>Note : never change existing code.</p>
+
+    <script>
+        function getNumber(index) {
+            const base = 4; // 起始值
+            const increment = 3; // 每個區塊的增量 3
+            const blockIndex = Math.floor((index - 1) / 2); // 取得所在區塊的索引
+            console.log(base + blockIndex * increment - (index % 2 === 0 ? 1 : 0));
+        }
+
+        getNumber(1); // Output: 4
+        getNumber(5); // Output: 10
+        getNumber(10); // Output: 15
+    </script>
+</body>
+
+</html>
