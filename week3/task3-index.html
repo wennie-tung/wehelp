@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Wennie Tung">
+    <title>Wennie's Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- header -->
+    <div class="frame">
+        <div class="lefttitle">My Website</div>
+        <div class="rightlist">
+            <div class="option">Item 1</div>
+            <div class="option">Item 2</div>
+            <div class="option">Item 3</div>
+            <div class="option">Item 4</div>
+        </div>
+        <!-- 漢堡圖 -->
+        <div class="hamburger" onclick="changeToMenu();">
+            <img src="ham.png" />
+        </div>
+        <!-- 手機版跳出選單 -->
+        <div class="ham-menu-container" style="display:none" id="menu">
+            <div class="close-botton" onclick="closeMenu();">
+                <img src="close-botton.png">
+            </div>
+            <div class="ham-menu">
+                <div class="ham-menu-text">Item 1</div>
+                <div class="ham-menu-text">Item 2</div>
+                <div class="ham-menu-text">Item 3</div>
+                <div class="ham-menu-text">Item 4</div>
+            </div>
+        </div>
+    </div>
+    <!-- welcome bar -->
+    <div class="welcome">Welcome to MyHome</div>
+
+    <!-- main content top -->
+    <div class="container">
+        <div class="top-content">
+        </div>
+        <!-- main content botton -->
+        <div class="content">
+        </div>
+    </div>
+    <script>
+        function changeToMenu() {
+            let menuDiv = document.querySelector("#menu")
+            menuDiv.style.display = "block";
+        }
+        function closeMenu() {
+            let menuDiv = document.querySelector("#menu")
+            menuDiv.style.display = "none";
+        }
+
+        // week 3 - task 3
+        // 網頁載入完成後，立即執行
+        window.addEventListener('load', () => {
+            fetch('https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json')
+                .then(response => response.json())
+                .then(data => {
+                    // 在這裡處理取得的資料
+                    console.log(data.result.results);
+                    console.log(data.result.results.length);
+                    getData(data.result.results)
+                })
+                .catch(error => {
+                    // 在這裡處理錯誤
+                    console.error(error);
+                });
+        });
+
+        function getData(results) {
+            if (results.length > 0) {
+                // 先取 15 比資料
+                let limit = 15;
+                let data = results.slice(0, limit);
+                console.log(data);
+
+                // 用 forEach迴圈將資料一一取出 
+                data.forEach((result, index) => {
+                    // 前 3 個景點資料顯示在最上方的 3 個框框中
+                    if (index < 3) {
+                        renderTopItem(result);
+                    } else {
+                        renderItem(result);
+                    }
+                });
+
+            }
+        }
+
+        function findFirstPictureUrl(url) {
+            // 使用正則表達式找出符合規則的第一個完整圖片網址
+            var pattern = /https?:\/\/[^ \n]+?\.(?:jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)/;
+
+            // 搜尋第一個符合規則的結果
+            var match = url.match(pattern);
+
+            // 判斷是否有找出符合規則的結果，並取得截取的圖片網址
+            if (match) {
+                var image_url = match[0];
+                return image_url;
+            } else {
+                console.log('未找到圖片網址');
+                // 回傳預設圖片
+                return 'https://plus.unsplash.com/premium_photo-1675616553658-259d91ec4a16?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80';
+            }
+        }
+
+
+        function renderTopItem(result) {
+            
+            // <div class="top-content">
+            // <div class="top-item"><img src="logan1.jpg"/>Promotion 1</div>
+            let topContainer = document.querySelector('.top-content');
+            let topItem = document.createElement('div');
+            topItem.className = "top-item";
+            let topItemImg = document.createElement('img');
+            topItemImg.src = findFirstPictureUrl(result.file);
+            topItem.appendChild(topItemImg);
+            let topItemText = document.createElement('div');
+            topItemText.textContent = result.stitle;
+            topItem.appendChild(topItemText);
+            topContainer.appendChild(topItem);
+        }
+
+        function renderItem(result) {
+            // <div class="item">
+            //     <img src="logan1.jpg" />
+            //     <div class="text-area">Title 1</div>
+            //     <div class="star"><img src="star.png" /></div>
+            // </div>
+            let container = document.querySelector('.content');
+            let item = document.createElement('div');
+            item.className = "item";
+            let star = document.createElement('div');
+            star.className = "star";
+            let starImg = document.createElement('img');
+            starImg.src = "https://cdn1.iconfinder.com/data/icons/christmas-flat-4/58/019_-_Star-512.png";
+            star.appendChild(starImg);
+            item.appendChild(star);
+            let itemImg = document.createElement('img');
+            itemImg.src = findFirstPictureUrl(result.file);
+            item.appendChild(itemImg);
+            let textArea = document.createElement('div');
+            textArea.className = "text-area";
+            textArea.textContent = result.stitle;
+            item.appendChild(textArea);
+            container.appendChild(item);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,212 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+}
+
+/* header */
+.frame {
+    display: flex;
+    margin: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rightlist {
+    display: flex;
+}
+
+.option {
+    margin-right: 10px;
+}
+
+.hamburger {
+    display: none;
+}
+
+.hamburger img {
+    height: 30px;
+}
+
+.ham-menu-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 200px;
+    z-index: 1;
+}
+
+.close-botton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+}
+
+.close-botton img {
+    height: 30px;
+}
+
+.ham-menu {
+    padding-top: 40px;
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(187, 169, 148);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.ham-menu-text {
+    color: #fff;
+    font-size: 17px;
+    margin: 5px;
+}
+
+/* welcome bar */
+.welcome {
+    display: flex;
+    height: 250px;
+    background-color: antiquewhite;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    /* 上一層設定的兩倍 */
+    font-weight: bolder;
+}
+
+/* main content */
+.container {
+    width: 1200px;
+    margin: 20px auto;
+}
+
+.top-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* 三個項目為一列 */
+    gap: 20px;
+}
+
+.top-content img {
+    /* top-content內的圖片屬性 */
+    width: 80px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.top-item {
+    display: flex;
+    height: 50px;
+    width: 100%;
+    margin-right: 20px;
+    align-items: center;
+    background-color: antiquewhite;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    /*垂直排列*/
+    background-color: antiquewhite;
+    position: relative;
+}
+
+.item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.text-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 0;
+    /* 半透明遮罩 */
+    background-color: #333;
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    opacity: 0.8;
+    font-size: 0.8rem;
+}
+
+.star {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+
+/* RWD */
+/* 螢幕寬度介於 600 - 1200 像素之間 */
+@media screen and (min-width:600px) and (max-width:1200px) {
+    .container {
+        width: 90%;
+    }
+
+    .top-content {
+        grid-template-columns: repeat(2, 1fr)
+    }
+
+    /* 套用 top-item class 的物件，選擇第三個 */
+    .top-item:nth-child(3) {
+        grid-column: 1 / span 2;
+        /* 僅套用一個東西，延伸兩個欄位 */
+    }
+
+    .content {
+        grid-template-columns: repeat(4, 1fr)
+    }
+}
+
+/* 螢幕寬度介於 360 - 600 像素之間 */
+@media screen and (min-width:300px) and (max-width:600px) {
+    body {
+        font-size: 18px;
+    }
+
+    .container {
+        width: 90%;
+    }
+
+    .top-content {
+        grid-template-columns: 1fr;
+    }
+
+    .content {
+        grid-template-columns: 1fr;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .rightlist {
+        display: none;
+    }
+
+    .text-area {
+        padding: 8px 0;
+    }
+
+    .star {
+        width: 20px;
+        height: 20px;
+        right: 8px;
+        top: 8px;
+    }
+}
