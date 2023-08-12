@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *,
+    *:before,
+    *:after {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #111;
+    }
+
+    .welcome {
+      font-family: 'Poppins', sans-serif;
+      text-align: start;
+      padding: 15px;
+      font-size: 25px;
+      color: #ffffff
+    }
+
+    .background {
+
+      width: 520px;
+      height: 520px;
+      margin: 0 auto;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      left: 50%;
+      top: 50%;
+    }
+
+    .background .shape {
+      height: 200px;
+      width: 200px;
+      position: absolute;
+      border-radius: 50%;
+    }
+
+    .shape:first-child {
+      background: linear-gradient(purple,
+          rgb(255, 96, 255));
+      left: -80px;
+      top: -80px;
+    }
+
+    .shape:last-child {
+      background: linear-gradient(to right,
+          orangered,
+          rgb(200, 89, 49));
+      right: -30px;
+      bottom: -80px;
+    }
+
+    .formframe{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+      font-weight: 500;
+      line-height: 1px;
+      padding: 10px 0;
+      text-align: center;
+      margin: 15px 0;
+      color: #ffffff;
+    }
+
+    form {
+      margin: 0 30px;
+      height: 550px;
+      width: 400px;
+      background-color: rgba(255, 255, 255, 0.13);
+      transform: translate(0%, 15%);
+
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+
+    form * {
+      font-family: 'Poppins', sans-serif;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+      outline: none;
+      border: none;
+      margin-top: 10px;
+    }
+
+    form h3 {
+      font-size: 1.8rem;
+      font-weight: 500;
+      line-height: 1px;
+      padding: 10px 0;
+      text-align: center;
+      margin: 15px 0;
+    }
+
+    .square_h3{
+      font-size: 1.7rem;
+      font-weight: 500;
+      line-height: 1px;
+      padding: 10px 0;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    input {
+      display: block;
+      height: 50px;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.07);
+      border-radius: 3px;
+      padding: 0 10px;
+      margin-top: 5px;
+      font-size: 14px;
+      font-weight: 300;
+    }
+
+    ::placeholder {
+      color: #e5e5e5;
+    }
+
+    input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+    }
+
+
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      margin-top: 15px;
+    }
+
+    .checkbox-container label {
+      margin-top: 8px;
+    }
+
+    button {
+      margin-top: 25px;
+      width: 100%;
+      background-color: #ffffff;
+      color: #080710;
+      padding: 15px 0;
+      font-size: 18px;
+      font-weight: 600;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    hr {
+      border: 1px solid #e5e5e5b7;
+      margin: 35px;
+    }
+
+    .required{
+      color:rgb(180, 180, 180);
+      font-size: 0.7rem;
+    }
+
+    .registerSuccess{
+      color: darksalmon;
+      font-size: 0.8rem;
+      text-align: center;
+      margin-top: 0px;
+    }
+
+    /* 媒體查詢，寬度小於 600px 時，表單整體寬度變為 80% */
+    @media screen and (max-width: 600px) {
+      .formframe{
+        flex-direction: column;
+        margin-top: 0px;
+      }
+      .background {
+        width: 90%;
+      }
+
+      form {
+        width: 90%;
+        margin: 0 auto 20px auto;
+      }
+
+      .background .shape {
+        height: 150px;
+        width: 150px;
+      }
+
+      form h3 {
+        font-size: 1.6rem;
+      }
+
+      label {
+        font-size: 1rem;
+      }
+
+      button {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="welcome">Home Page</div>
+  <div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+  <div class="formframe">
+    <!-- form 1 -->
+    <form id ="registrationForm" action="/signup" method="post">
+      <h3>Sign Up</h3>
+  
+      <label for="r_name">* Name</label>
+      <input type="text" name="r_name" placeholder="your true name" id="r_name">
+  
+      <label for="r_username">* Username</label>
+      <input type="text" name="r_username" placeholder="account" id="r_username">
+  
+      <label for="r_password">* Password</label>
+      <input type="password" name="r_password" placeholder="password" id="r_password">
+  
+      <button onclick="completeRegisterForm()">Sign Up</button>
+
+      <div class="required">Fields marked with * are required.</div>
+    </form>
+  <!-- form 2 -->
+    <form id ="loginForm" action="/signin" method="post">
+        <h3>Sign In</h3>
+        <div class="registerSuccess">{{ request.args.get('message', '') }}</div>
+
+        <label for="l_username">* Username</label>
+        <input type="text" name="l_username" placeholder="account" id="l_username">
+
+        <label for="l_password">* Password</label>
+        <input type="password" name="l_password" placeholder="password" id="l_password">
+
+        <button onclick="completeLoginForm()">Sign In</button>
+
+        <div class="required">Fields marked with * are required.</div>
+    </form>
+    </div>
+</body>
+  <script>
+    // 檢查註冊表單填寫
+    // 任一空值阻擋預設行為 
+    function completeRegisterForm(){
+      let r_name = document.getElementById("r_name").value;
+      let r_username = document.getElementById("r_username").value;
+      let r_password = document.getElementById("r_password").value;
+
+      if(r_name === "" || r_username === "" || r_password === ""){
+        alert("Name, username, and password are all required fields.\nPlease fill out all fields completely.")
+        event.preventDefault();
+      }
+      else{
+        document.getElementById("registrationForm").submit();
+      }
+    }
+
+    // 檢查登入表單填寫
+    function completeLoginForm(){
+      let l_username = document.getElementById("l_username").value;
+      let l_password = document.getElementById("l_password").value;
+
+      if(l_username === "" || l_password === ""){
+        alert("Username and password are all required fields.\nPlease fill out all fields completely.")
+        event.preventDefault();
+      }
+      else{
+        document.getElementById("loginForm").submit();
+      }
+    }
+  </script>
+</html>
