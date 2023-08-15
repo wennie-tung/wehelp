@@ -110,4 +110,4 @@ def deleteMessage(messageID):
     return redirect('/member')
 
 if __name__ == "__main__":
-    app.run(debug=open, port=3000)
+    app.run(port=3000)
