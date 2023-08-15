@@ -71,7 +71,24 @@
             justify-content: center;
           }
       
-          form {
+          .form1 {
+            margin: 0 30px;
+            height: 520px;
+            width: 400px;
+            background-color: rgba(255, 255, 255, 0.13);
+            transform: translate(0%, 15%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+      
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+            padding: 50px 35px;
+          }
+
+          .form2{
             margin: 0 30px;
             height: 520px;
             width: 400px;
@@ -88,7 +105,7 @@
             padding: 50px 35px;
           }
       
-          form * {
+          .form1 * {
             font-family: 'Poppins', sans-serif;
             color: #ffffff;
             letter-spacing: 0.5px;
@@ -96,7 +113,7 @@
             border: none;
           }
       
-          form h3 {
+          .form1 h3 {
             font-size: 1.5rem;
             font-weight: 500;
             line-height: 42px;
@@ -148,7 +165,7 @@
             font-size: 1.5rem;
           }
       
-          button {
+          .button1 {
             margin-top: 30px;
             width: 100%;
             background-color: #ffffff;
@@ -166,6 +183,7 @@
             }
 
           .boardh3{
+            color: #ffffff;
             font-size: 1.5rem;
             font-weight: 500;
             line-height: 30px;
@@ -173,16 +191,22 @@
           }
 
           .boardhr{
-            margin-top: 10px;
+            margin: 10px 0px;
+            border: 1px solid #e5e5e5b7;
           }
 
           .boardMessage{
-            margin: 10px 0;
+            margin: 10px 5px;
 
           }
 
           .liMessage{
             margin: 3px 10px;
+            font-family: 'Poppins', sans-serif;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            outline: none;
+            border: none;
           }
 
           .removeButton {
@@ -196,6 +220,11 @@
             width: 15px;
           }
       
+
+          .deleteMessageForm{
+            display: none;
+          }
+
           /* 媒體查詢，寬度小於 600px 時，表單整體寬度變為 80% */
           @media screen and (max-width: 600px) {
             .background {
@@ -206,7 +235,7 @@
               flex-direction: column;
             }
 
-            form {
+            .form1 {
               width: 90%;
               margin: 0 auto 20px auto;
             }
@@ -216,7 +245,7 @@
               width: 150px;
             }
       
-            form h3 {
+            .form1 h3 {
               font-size: 1.6rem;
             }
       
@@ -224,7 +253,7 @@
               font-size: 1rem;
             }
       
-            button {
+            .button1 {
               font-size: 1rem;
             }
           }
@@ -239,31 +268,41 @@
         </div>
         <div class="messageFrame">
           <!-- form -->
-          <form action="/signout" method="get" id="messageForm">
+          <form class= "form1" action="/signout" method="get" id="messageForm">
             <!-- 打招呼＆登出鍵 -->
             <div class="hello">Hello, {{ name }}.</div>
             <h3>Login Success</h3>
-            <button>Logout</button>
+            <button class="button1">Logout</button>
             <hr/>
             <!-- 留言區塊 -->
             <label for="guestMessage">Feel free to leave your message !</label>
             <input type="text" name="guestMessage" placeholder="text here" id="guestMessage">
-            <button id = "createMsgBtn" name="createMsgBtn">Submit</button>
+            <button class= "button1" id="createMsgBtn" name="createMsgBtn">Submit</button>
           </form>
-          <!-- 留言板 -->
-          <form action="/member" method="get">
+          <!-- 右邊留言板 -->
+          <form class="form2" action="/member" method="get">
             <h3 class="boardh3">Message Board</h3>
             <hr class="boardhr"/>
             <div class="boardMessage">
               <ul>
                 {% for message in messageContent %}
-                    <li class="liMessage">
-                      {{ message[0]}} : {{ message[1]}} 
-                    </li>
+                  <li class="liMessage">
+                    {{ message[0]}} : {{ message[1]}}
+                    {% if memberID == message[3] %}
+                    <button type="submit" form="deleteMessageForm" class="removeButton"  id="removeButton"><img class="removeImg" src="remove.png" alt="delete message">
+                    </button>
+                    {% endif %}
+                  </li>
                 {% endfor %}
-              </ul>            
+              </ul>
             </div>
           </form>
+          {% for message in messageContent %}
+          {% if memberID == message[3] %}
+          <form action="/deleteMessage/{{message[2]}}" method="post" id="deleteMessageForm"> 
+          </form>
+          {% endif %}
+          {% endfor %}
         </div>
       </body>
       <script>
@@ -280,6 +319,17 @@
             form.action = "/createMessage";
             form.method = "post";
             form.submit();
+          }
+        });
+
+        // 刪除留言前確認
+        document.getElementById("removeButton").addEventListener("click", function(){
+          let yes = confirm("Are you sure you want to delete the message?")
+          if (yes) {
+            let form = document.getElementById("deleteMessageForm")
+            alert("Message deletion successful!");
+          } else {
+            alert("取消刪除留言")
           }
         });
       </script>

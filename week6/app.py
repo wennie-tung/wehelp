@@ -75,12 +75,12 @@ def loginsuccess():
         return redirect('/')
     # 登入狀態
     name = session['name']
-    sql = 'SELECT member.name, message.content FROM member INNER JOIN message ON member.id = message.member_id'
+    memberID = session['ID']
+    sql = 'SELECT member.name, message.content, message.id, member.id FROM member INNER JOIN message ON member.id = message.member_id'
     mycursor.execute(sql)
     messageData = mycursor.fetchall()
-    print(messageData)
     messageContent = messageData
-    return render_template("member-page.html", name = name, messageContent = messageContent)
+    return render_template("member-page.html", name = name, messageContent = messageContent, memberID = memberID)
 
 # 登入失敗
 @app.route("/error", methods=['GET'])
@@ -98,15 +98,16 @@ def createMessage():
     val = (memberID, memberMessage)
     mycursor.execute(sql, val)
     mydb.commit()
-    # 將留言內容傳遞到前端
-    sql = 'SELECT member.name, message.content FROM member INNER JOIN message ON member.id = message.member_id'
-    mycursor.execute(sql)
-    messageData = mycursor.fetchall()
-    messageContent = messageData
     return redirect('/member')
 
 # 刪除留言功能 (Optional)
-# @app.route("/deleteMessage", methods=['POST'])
+@app.route("/deleteMessage/<int:messageID>", methods=['POST'])
+def deleteMessage(messageID):
+    sql = 'DELETE FROM message WHERE id = %s'
+    val = (messageID,)
+    mycursor.execute(sql, val)
+    mydb.commit()
+    return redirect('/member')
 
 if __name__ == "__main__":
-    app.run(port=3000)
+    app.run(debug=open, port=3000)
