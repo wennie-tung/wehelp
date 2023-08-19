@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login Success</title>
+      
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+      
+        <style>
+          *,
+          *:before,
+          *:after {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+          }
+      
+          body {
+            background-color: #111;
+          }
+      
+          .welcome{
+            font-family: 'Poppins', sans-serif;
+            text-align: start;
+            padding: 15px;
+            font-size: 25px;
+            color:#ffffff
+          }
+
+          .background {
+      
+            width: 520px;
+            height: 520px;
+            margin: 0 auto;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            left: 50%;
+            top: 50%;
+          }
+      
+          .background .shape {
+            height: 200px;
+            width: 200px;
+            position: absolute;
+            border-radius: 50%;
+          }
+      
+          .shape:first-child {
+            background: linear-gradient(purple,
+                rgb(255, 96, 255));
+            left: -80px;
+            top: -80px;
+          }
+      
+          .shape:last-child {
+            background: linear-gradient(to right,
+                orangered,
+                rgb(200, 89, 49));
+            right: -30px;
+            bottom: -80px;
+          }
+
+          .messageFrame{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+          }
+      
+          .form1 {
+            margin: 0 30px;
+            height: 550px;
+            width: 400px;
+            background-color: rgba(255, 255, 255, 0.13);
+            transform: translate(0%, 15%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+      
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+            padding: 35px 35px;
+          }
+
+          .form2{
+            margin: 0 30px;
+            height: 550px;
+            width: 400px;
+            background-color: rgba(255, 255, 255, 0.13);
+            transform: translate(0%, 15%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+      
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+            padding: 50px 35px;
+          }
+      
+          .form1 * {
+            font-family: 'Poppins', sans-serif;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            outline: none;
+            border: none;
+          }
+
+          .form2 * {
+            font-family: 'Poppins', sans-serif;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            outline: none;
+            border: none;
+          }
+
+          .form2 label {
+            display: block;
+            margin-top: 20px;
+            font-size: 16px;
+            font-weight: 500;
+          }
+      
+          .form1 h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            line-height: 42px;
+            text-align: center;
+          }
+      
+          label {
+            display: block;
+            margin-top: 30px;
+            font-size: 16px;
+            font-weight: 500;
+          }
+      
+          input {
+            display: block;
+            height: 50px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.07);
+            border-radius: 3px;
+            padding: 0 10px;
+            margin-top: 8px;
+            font-size: 14px;
+            font-weight: 300;
+          }
+      
+          ::placeholder {
+            color: #e5e5e5;
+          }
+      
+          input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+          }
+      
+      
+          .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+          }
+      
+          .checkbox-container label {
+            margin-top: 8px;
+          }
+
+          .hello {
+            text-align: center;
+            font-size: 1.5rem;
+          }
+      
+          .button1 {
+            margin-top: 15px;
+            width: 100%;
+            background-color: #ffffff;
+            color: #080710;
+            padding: 15px 0;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+          }
+
+          .button2{
+            height: 50px;
+            margin: 8px 12px;
+            background-color: #ffffff;
+            color: #080710;
+            padding: 15px 15px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+          }
+
+          .searchFrame{
+            display: flex;
+            flex-direction: row;
+          }
+
+          .inputSearch{
+            display: block;
+            height: 50px;
+            width: 70%;
+            background-color: rgba(255, 255, 255, 0.07);
+            border-radius: 3px;
+            padding: 0 10px;
+            margin-top: 8px;
+            font-size: 14px;
+            font-weight: 300;
+          }
+
+          .searchResult{
+            color: #ff5c5c;
+            font-size: 15px;
+            margin-top: 8px;
+          }
+
+          .lefthr{
+            border: 1px solid #e5e5e5b7;
+            margin-top: 35px;
+            }
+
+          .boardh3{
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: 500;
+            line-height: 30px;
+            text-align: center;
+            margin-bottom: 10px;
+          }
+
+          .boardhr{
+            margin: 10px 0px;
+            border: 1px solid #e5e5e5b7;
+          }
+
+          .boardMessage{
+            display: block;
+            border: 3px solid #e5e5e5b7;
+            padding: 5px 5px 5px 15px;
+            overflow: scroll;
+
+          }
+
+          .liMessage{
+            margin: 3px 10px;
+            font-family: 'Poppins', sans-serif;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            outline: none;
+            border: none;
+          }
+
+          .removeButton {
+            background: none;
+            border: none;
+            cursor: pointer;
+          }
+
+          .removeImg{
+            height: 15px;
+            width: 15px;
+          }
+      
+
+          .deleteMessageForm{
+            display: none;
+          }
+
+          /* 媒體查詢，寬度小於 600px 時，表單整體寬度變為 80% */
+          @media screen and (max-width: 600px) {
+            .background {
+              width: 90%;
+            }
+            
+            .messageFrame{
+              flex-direction: column;
+            }
+
+            .form1 {
+              width: 90%;
+              margin: 0 auto 20px auto;
+            }
+      
+            .background .shape {
+              height: 150px;
+              width: 150px;
+            }
+      
+            .form1 h3 {
+              font-size: 1.6rem;
+            }
+      
+            label {
+              font-size: 1rem;
+            }
+      
+            .button1 {
+              font-size: 1rem;
+            }
+          }
+        </style>
+      </head>
+      
+      <body>
+        <div class="welcome">Member's Page</div>
+        <div class="background">
+          <div class="shape"></div>
+          <div class="shape"></div>
+        </div>
+        <div class="messageFrame">
+          <!-- form 1 : 會員 -->
+          <form class= "form1" action="/signout" method="get" >
+            <!-- 打招呼＆登出鍵 -->
+            <div class="hello">Hello, {{ name }}.</div>
+            <h3>Login Success</h3>
+            <button class="button1">Logout</button>
+            <hr class="lefthr"/>
+
+            <!-- 查詢會員姓名 -->
+            <label for="searchUser">Search Member‘s Name</label>
+            <div class="searchFrame">
+              <input type="text" name="searchUserInput" placeholder="enter an username" class="inputSearch" id="searchUserInput">
+              <button onclick="getMemberData()" id="searchUser"class="button2" name="searchUser">Search</button>
+            </div>
+            <!-- 顯示查詢結果 -->
+            <div id="searchResult" class="searchResult"></div>
+
+            <!-- 更新會員姓名 -->
+            <label for="updateName">Update My Name</label>
+            <div class="searchFrame">
+              <input type="text" name="updateName" placeholder="enter new name" class="inputSearch" id="updateNameInput">
+              <!-- 在 button 內偷塞 memberID (dataset attribute) -->
+              <button data-user-id="{{memberID}}" class="button2" id="updateName" name="updateName">Update</button>
+            </div>
+            <!-- 顯示更新結果 -->
+            <div id="updateResult" class="searchResult"></div>
+
+          </form>
+
+          <!-- form 2 : 留言 -->
+          <form class="form2" action="/member" method="get" id="messageForm">
+            <!-- 留言板 -->
+            <h3 class="boardh3">Message Board</h3>
+            <div class="boardMessage" id="boardMessage">
+              <ul>
+                {% for message in messageContent %}
+                  <li class="liMessage">
+                    {{ message[0]}} : {{ message[1]}}
+                    {% if memberID == message[3] %}
+                    <button type="submit" form="deleteMessageForm" class="removeButton"  id="removeButton"><img class="removeImg" src="remove.png" alt="delete message">
+                    </button>
+                    {% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+            <!-- 留言區塊 -->
+            <label for="guestMessage">Feel free to leave your message !</label>
+            <input type="text" name="guestMessage" placeholder="text here" id="guestMessage">
+            <button class= "button1" id="createMsgBtn" name="createMsgBtn">Submit</button>
+          </form>
+          {% for message in messageContent %}
+          {% if memberID == message[3] %}
+          <form action="/deleteMessage/{{message[2]}}" method="post" id="deleteMessageForm"> 
+          </form>
+          {% endif %}
+          {% endfor %}
+        </div>
+      </body>
+      <script>
+        // 送出留言功能
+        document.getElementById("createMsgBtn").addEventListener("click",function(){
+          event.preventDefault(); // 阻止預設行為 action="/signout"
+          let inputMessage = document.getElementById("guestMessage").value;
+          // 留言不可為空值
+          if (inputMessage === "") {
+            alert("Please leave a message before submitting the form.")
+          } else {
+            let form = document.getElementById("messageForm")
+            alert("Message has been successfully submitted !")
+            form.action = "/createMessage";
+            form.method = "post";
+            form.submit();
+          }
+        });
+
+        // 刪除留言前確認
+        document.getElementById("removeButton").addEventListener("click", function(){
+          let yes = confirm("Are you sure you want to delete the message?")
+          if (yes) {
+            let form = document.getElementById("deleteMessageForm")
+            alert("Message deletion successful!");
+          } else {
+            alert("取消刪除留言")
+          }
+        });
+
+        // 查詢會員姓名 by username
+        document.getElementById("searchUser").addEventListener("click", getMemberData)
+        // fetch
+        function getMemberData(){
+          event.preventDefault();
+          let username = document.getElementById("searchUserInput").value;
+          fetch("http://127.0.0.1:3000/api/member?username=" + username).
+          then(function(response){
+            return response.json();
+          }).then(function(memberData){
+            // 取得畫面資料後要放到頁面上
+            renderMemberData(memberData.data)
+          })
+        };
+        // 取得畫面資料後要放到頁面上
+        function renderMemberData(userInfo){
+          let searchResult = document.getElementById("searchResult");
+          if(userInfo == null){
+            searchResult.innerHTML = "查無此會員" ;
+          } else{
+            searchResult.innerHTML = "查詢結果 : " + userInfo.name + " ("+ userInfo.username + ")" ;
+          }
+        };
+
+
+        // 更新會員本身姓名
+        document.getElementById("updateName").addEventListener("click", updateMyName)
+
+        function updateMyName(){
+          event.preventDefault();
+          const newName = document.getElementById("updateNameInput").value;
+          // 把 memberID 從 dataset 取出來
+          const ID = document.getElementById("updateName").dataset.userId
+          // 準備好要傳遞到後端的 data 物件
+          const data={
+            id: ID,
+            name: newName
+          };
+
+          // 把網址放到變數中
+          const apiUrl = "http://127.0.0.1:3000/api/member";
+
+          fetch(apiUrl,{
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+          })
+          .then(response => response.json())
+          .then(result => {
+            console.log(result)
+            if(result.ok){
+              let HelloMessage = document.querySelector('.hello');
+              HelloMessage.innerHTML = `Hello, ${newName}.`;
+              updateResult.innerHTML = "更改姓名成功 : " + newName;
+            } else{
+              updateResult.innerHTML = "更改姓名失敗";
+            }
+          })
+          // fetch 錯誤時會出現的錯誤訊息
+          .catch(error => {
+            console.error("Error! " , error);
+          });
+        };
+
+        
+      </script>
+</html>
