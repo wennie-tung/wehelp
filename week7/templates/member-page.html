@@ -323,7 +323,7 @@
         </div>
         <div class="messageFrame">
           <!-- form 1 : 會員 -->
-          <form class= "form1" action="/signout" method="get" >
+          <form class= "form1" method="get" > 
             <!-- 打招呼＆登出鍵 -->
             <div class="hello">Hello, {{ name }}.</div>
             <h3>Login Success</h3>
@@ -343,8 +343,7 @@
             <label for="updateName">Update My Name</label>
             <div class="searchFrame">
               <input type="text" name="updateName" placeholder="enter new name" class="inputSearch" id="updateNameInput">
-              <!-- 在 button 內偷塞 memberID (dataset attribute) -->
-              <button data-user-id="{{memberID}}" class="button2" id="updateName" name="updateName">Update</button>
+              <button type="button" class="button2" id="updateName" name="updateName">Update</button>
             </div>
             <!-- 顯示更新結果 -->
             <div id="updateResult" class="searchResult"></div>
@@ -398,15 +397,16 @@
           }
         });
 
-        // 刪除留言前確認
-        document.getElementById("removeButton").addEventListener("click", function(){
-          let yes = confirm("Are you sure you want to delete the message?")
-          if (yes) {
-            let form = document.getElementById("deleteMessageForm")
-            alert("Message deletion successful!");
-          } else {
-            alert("取消刪除留言")
-          }
+        document.querySelectorAll(".removeButton").forEach(button => {
+          button.addEventListener("click", function(){
+            let yes = confirm("Are you sure you want to delete the message?")
+            if (yes) {
+              let form = document.getElementById("deleteMessageForm")
+              alert("Message deletion successful!");
+            } else {
+              alert("取消刪除留言")
+            }
+          });
         });
 
         // 查詢會員姓名 by username
@@ -435,16 +435,18 @@
 
 
         // 更新會員本身姓名
-        document.getElementById("updateName").addEventListener("click", updateMyName)
+        document.addEventListener("DOMContentLoaded", function(){
+          document.getElementById("updateName").addEventListener("click", updateMyName)
+        });
 
         function updateMyName(){
           event.preventDefault();
           const newName = document.getElementById("updateNameInput").value;
           // 把 memberID 從 dataset 取出來
-          const ID = document.getElementById("updateName").dataset.userId
+          // const ID = document.getElementById("updateName").dataset.userId
           // 準備好要傳遞到後端的 data 物件
           const data={
-            id: ID,
+            // id: ID,
             name: newName
           };
 
@@ -460,7 +462,6 @@
           })
           .then(response => response.json())
           .then(result => {
-            console.log(result)
             if(result.ok){
               let HelloMessage = document.querySelector('.hello');
               HelloMessage.innerHTML = `Hello, ${newName}.`;

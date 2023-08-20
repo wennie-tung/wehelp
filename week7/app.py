@@ -130,11 +130,10 @@ def updateName():
         # 解析請求的 JSON 資料
         requestData = request.get_json()
         if 'name' in requestData:
-            requestData = request.get_json()
-            memberID = requestData['id']
             newName = requestData['name']
-            sql = 'UPDATE member SET name = %s WHERE id = %s'
-            val = (newName, memberID,)
+            originalName = session['name']
+            sql = 'UPDATE member SET name = %s WHERE name= %s'
+            val = (newName, originalName,)
             mycursor.execute(sql, val)
             mydb.commit()
             session['name'] = newName
@@ -147,4 +146,4 @@ def updateName():
 
 
 if __name__ == "__main__":
-    app.run(port=3000)
+    app.run(debug=open, port=3000)
