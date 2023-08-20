@@ -442,11 +442,8 @@
         function updateMyName(){
           event.preventDefault();
           const newName = document.getElementById("updateNameInput").value;
-          // 把 memberID 從 dataset 取出來
-          // const ID = document.getElementById("updateName").dataset.userId
           // 準備好要傳遞到後端的 data 物件
           const data={
-            // id: ID,
             name: newName
           };
 
