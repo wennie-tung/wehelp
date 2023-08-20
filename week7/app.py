@@ -50,6 +50,7 @@ def signin():
     sql = 'SELECT * FROM member WHERE username = %s AND password = %s'
     mycursor.execute(sql, (loginUsername,loginPassword))
     isMember = mycursor.fetchall()
+    print(isMember)
 
     if isMember:
         session['SIGN-IN'] = True
@@ -129,11 +130,12 @@ def updateName():
     try:
         # 解析請求的 JSON 資料
         requestData = request.get_json()
+        print(requestData)
         if 'name' in requestData:
             newName = requestData['name']
-            originalName = session['name']
-            sql = 'UPDATE member SET name = %s WHERE name= %s'
-            val = (newName, originalName,)
+            username = session['username']
+            sql = 'UPDATE member SET name = %s WHERE username= %s'
+            val = (newName, username,)
             mycursor.execute(sql, val)
             mydb.commit()
             session['name'] = newName
